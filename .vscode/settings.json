@@ -1,0 +1,30 @@
+{
+  "files.exclude": {
+    // "libs": true,
+    // "pic": true,
+    // "LICENSE": true,
+    // ".editorconfig": true,
+    // ".gitignore": true,
+    // "logo.png": true,
+    // "install-old.sh": true,
+    // "README-SETUP.md": true,
+    // "README.md": true,
+    // "**/adblock": true,
+    // "**/apt-get": true,
+    // "**/brew": true,
+    // "**/git": true,
+    // "**/js": true,
+    // "**/vscode": true,
+    // // "**/iterm": true,
+    // "**/gpg": true,
+    // "**/npm": true,
+    // "**/ssh": true,
+    // "**/fonts": true,
+    // "**/wget": true,
+    // "**/screen": true,
+    // "**/curl": true,
+    // "**/yarn": true,
+    // "**/tmux": true,
+    // "**/zsh": true
+  }
+}

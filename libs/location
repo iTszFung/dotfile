@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Homebrew 下载地址，下载或卸载在后面加 `uninstall`  或 `install`
+BREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install"
+BREW_UNINSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/uninstall"
+# Ruby and RVM
+RUBY_URL="https://cache.ruby-china.org/pub/ruby"
+RVM_INSTALL_URL="https://get.rvm.io"
+
+# OhMyZsh POWERLEVEL9K
+OMZSH_REPO_URL="https://github.com/robbyrussell/oh-my-zsh.git"
+POWERLEVEL9K_REPO_URL="https://github.com/bhilburn/powerlevel9k.git"
+
+# vim and emacs
+VIM_REPO_URL="https://github.com/vim/vim.git"
+SPACEMACS_REPO_URL="https://github.com/syl20bnr/spacemacs.git"
+
+# vundle & Spf13 & Spacemacs
+VUNDLE_REPO_URL="https://github.com/gmarik/vundle.git"
+SPF13_REPO_URL="https://github.com/spf13/spf13-vim.git"
+SPACEMACS_REPO_URL="https://github.com/syl20bnr/spacemacs.git"
+
+# iterm shell intergration
+ITERM_SHELL_INTERGRATION_URL="https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh"
+ITERM_COLOR_SCHEMES_URL="https://github.com/mbadolato/iTerm2-Color-Schemes/tarball/master"
+
+TUMX_PLUGIN_TPM_URL="https://github.com/tmux-plugins/tpm"
+
+#
+BASE_16_FOR_XCODE_URL="https://github.com/joedynamite/base16-xcode"

@@ -1,0 +1,1 @@
+export PATH=/Users/itszfung/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/itszfung/.rvm/bin:/usr/local/opt/fzf/bin:/usr/local/share/scripts
