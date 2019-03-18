@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# https://www.cnblogs.com/zhengran/p/4802582.html
 # http://blog.alutam.com/2012/04/01/optimizing-macos-x-lion-for-ssd/
 # https://mths.be/macos
 # http://www.osdata.com/programming/shell/defaults.html
@@ -383,10 +384,10 @@ sudo chflags uchg /Private/var/vm/sleepimage
 # 设置语言和文本格式
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en"
-defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
-defaults write NSGlobalDomain AppleMetricUnits -bool false
+# defaults write NSGlobalDomain AppleLanguages -array "en"
+# defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+# defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+# defaults write NSGlobalDomain AppleMetricUnits -bool false
 
 ###############################################################################
 # 时间、日期、时区
@@ -608,7 +609,7 @@ defaults write com.apple.dock minimize-to-application -bool true
 # 禁用 Dock 放大
 # defaults write com.apple.dock magnification -bool false
 # Dock 尺寸和位置
-defaults write com.apple.Dock size-immutable -bool yes
+defaults write com.apple.Dock size-immutable -bool false
 # 将停靠项的图标大小设置为60像素
 defaults write com.apple.dock tilesize -int 60
 # 禁用图标跳跃（好像不能用）
