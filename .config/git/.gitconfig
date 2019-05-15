@@ -1,6 +1,6 @@
 [user]
-  name = TszFung Lam
-  email = itszfung@icloud.com
+	name = TszFung Lam
+	email = itszfung@icloud.com
 [github]
   # https://github.com/blog/180-local-github-config
   user = TszFung Lam
@@ -37,7 +37,7 @@
   fontdiff = -family Monaco -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/itszfung/.gitignore
   quotepath = false
   # line endings
   # force LF during add
@@ -198,3 +198,11 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/itszfung/.stCommitMsg

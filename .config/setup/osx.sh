@@ -37,19 +37,19 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # 禁用恢复系统
 # defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 # 永远不要进入电脑休眠模式
-sudo systemsetup -setcomputersleep Off > /dev/null
+# sudo systemsetup -setcomputersleep Off > /dev/null
 # 如果计算机死机，则自动重启
-sudo systemsetup -setrestartfreeze on
+# sudo systemsetup -setrestartfreeze on
 # 禁用崩溃报告程序
-defaults write com.apple.CrashReporter DialogType -string "none"
+# defaults write com.apple.CrashReporter DialogType -string "none"
 # 禁用非活动应用程序的自动终止
-defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+# defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 # 默认情况下保存到磁盘 而不是iCloud
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # 打印作业完成后自动退出打印机应用程序
 # defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # 删除 “打开” 菜单中的重复项（也请参阅“lscleanup”别名）
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+# /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 # 将帮助查看器窗口设置为非浮动模式
 defaults write com.apple.helpviewer DevMode -bool true
 # 禁用通知中心并删除菜单栏图标
@@ -365,7 +365,7 @@ sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMultica
 ###############################################################################
 
 # 禁用休眠(加速进入睡眠模式)
-sudo pmset -a hibernatemode 0
+# sudo pmset -a hibernatemode 0
 
 # 删除休眠映像文件以节省磁盘空间
 sudo rm -rf /Private/var/vm/sleepimage
@@ -384,11 +384,11 @@ sudo chflags uchg /Private/var/vm/sleepimage
 # 设置语言和文本格式
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-# defaults write NSGlobalDomain AppleLanguages -array "en"
-# defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+# defaults write NSGlobalDomain AppleLanguages -array "zh"
+# defaults write NSGlobalDomain AppleLocale -string "zh-CN"
 # defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
 # defaults write NSGlobalDomain AppleMetricUnits -bool false
-
+# zh-Hans
 ###############################################################################
 # 时间、日期、时区
 ###############################################################################

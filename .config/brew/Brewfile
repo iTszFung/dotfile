@@ -20,12 +20,6 @@ tap "cjbassi/gotop"
 tap "koekeishiya/formulae"
 tap "sass/sass"
 
-
-
-
-
-
-
 # 托管应用
 brew 'ag'
 brew 'ant'
