@@ -176,7 +176,6 @@ mac_install() {
 }
 
 linux_install() {
-  source ${SCRIPT_HOME}/res/apt-get/Package
   sudo apt-get install -y $@
   # sudo apt-get install -y "$extra_package"
   sudo apt-get autoremove
@@ -236,7 +235,7 @@ if [[ $ans =~ ^(y|yes|Y|YES) ]];then
   fi
   read -r -p "是否需要安装特殊字体？（非客户端不建议安装）[y|N] " ans
   if [[ $ans =~ (yes|y|Y) ]];then
-    FONT_PATH=$HOME/Library/Fonts
+    FONT_PATH=/usr/share/fonts
     if [ "$(uname -s)" != "Darwin" ];then
       FONT_PATH=$HOME/.fonts && mkdir -p "$FONT_PATH"   # "$HOME/.local/share/fonts"
       git clone https://github.com/ryanoasis/nerd-fonts ~/nerd-fonts

@@ -3,7 +3,7 @@
 
 essential_package=afl arc-theme build-essential \
                   ccache curl doxygen  dtrx graphviz \
-                  exuberant-ctags ffmpeg lcov \
+                  exuberant-ctags lcov \
                   fish gdb git git-flow gnupg gparted htop \
                   lldb lm-sensors nasm python-pip \
                   neofetch nfs-common nodejs npm python ranger \
