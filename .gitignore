@@ -126,3 +126,6 @@ res/oh-my-zsh/
 .DS_Store
 .zcompdump-TszFung的MacBook Pro-5.7
 .cache/**
+old.sh
+node_modules
+node_modules/**

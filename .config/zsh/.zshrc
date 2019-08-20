@@ -140,9 +140,10 @@ typeset -U PATH path
 
 # custom config
 source "${CONFIG_HOME}/zsh/aliases.zsh"
-source "${CONFIG_HOME}/zsh/functions.zsh"
 source "${CONFIG_HOME}/zsh/keybindings.zsh"
 source "${CONFIG_HOME}/zsh/git.zsh"
-source "${CONFIG_HOME}/zsh/docker.zsh"
 source "${CONFIG_HOME}/zsh/fzf.zsh"
+# 以上的 linux 不可用
+source "${CONFIG_HOME}/zsh/functions.zsh"
+source "${CONFIG_HOME}/zsh/docker.zsh"
 source "${CONFIG_HOME}/zsh/autojump.zsh"
