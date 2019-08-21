@@ -4,6 +4,7 @@
     "Users/itszfung/TSpace/dockerfile/moby": true,
     "../notes/.vscode": true,
     "../notes/old": true,
-    "../notes/SUMMARY.md": true
+    "../notes/SUMMARY.md": true,
+    ".config/adblock": true
   }
 }

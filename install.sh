@@ -6,13 +6,13 @@
 
 # http://www.osdata.com/programming/shell/unixbook.pdf
 
+# TODO: zsh 的环境文件、配置文件、脚本文件在 Linux 上有问题
 # 导入库
 . ./libs/functions
 . ./libs/location
 
 # 基础变量
 DEBUG=
-REMOVE=
 VERSION=0.2.0
 COMMAND=$(basename "$0")  # install.sh
 SCRIPT_HOME=$(cd $(dirname $BASH_SOURCE) && pwd) # /Users/itszfung/TSpace/dotfile
@@ -62,14 +62,20 @@ fi
 # 字体安装
 read -r -p "是否需要安装特殊字体？（非客户端不建议安装）[y|N] " ans
 if [[ $ans =~ (yes|y|Y) ]];then
-  FONT_PATH=/usr/share/fonts
-  if [ "$(uname -s)" != "Darwin" ];then
-    FONT_PATH=$HOME/.fonts && mkdir -p "$FONT_PATH"   # "$HOME/.local/share/fonts"
+  if [[ `uname` == 'Darwin' ]]; then
+    # MacOS
+    font_dir="$HOME/Library/Fonts"
+    # nerdfont
     git clone https://github.com/ryanoasis/nerd-fonts ~/nerd-fonts
     pushd ~/nerd-fonts && ./install.sh && popd && rm -rf ~/nerd-fonts
+  else
+    # Linux
+    font_dir="$HOME/.local/share/fonts"
+    mkdir -p $font_dir
   fi
-  find "${SCRIPT_HOME}/fonts" -name "*.[o,t]tf" -type f | while read -r file; do
-    cp -v "$file" "$FONT_PATH"
+
+  find "${CONFIG_HOME}/fonts" -name "*.[o,t]tf" -type f | while read -r file; do
+    cp -v "$file" "$font_dir"
   done
   # 字体缓存
   if command -v fc-cache @>/dev/null; then
@@ -80,6 +86,14 @@ fi
 
 # 依赖安装
 if [ "$(uname -s)" != "Darwin" ];then
+    read -r -p "是否配置阿里云源（非客户端不建议安装）[y|N] " ans
+    if [[ $ans =~ (yes|y|Y) ]];then
+      if [ "$(cat /etc/issue | cut -d ' ' -f 1)" == "Ubuntu" ];then
+        version_name=$(cat /etc/os-release |grep VERSION_ID |cut -d'"' -f 2)
+        sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+        sudo cp -r ${CONFIG_HOME}/apt/sources.list.$version_name /etc/apt/sources.list
+      fi
+    fi
   # source "${CONFIG_HOME}/apt-get/Package"
   #   linux_install "$essential_package"
   #   read -r -p "是否需要安装开发者工具？[y|N]" response
@@ -87,11 +101,11 @@ if [ "$(uname -s)" != "Darwin" ];then
   #     linux_install "$develop_package $extra_package"
   #   fi
   sudo apt-get update && sudo apt upgrade -y && sudo apt-get dist-upgrade -f
-  sudo apt-get install -y doxygen git git-flow gnupg htop shellcheck \
-                     tmux tree unrar xz-utils bash-completion screen zsh \
-                     fonts-font-awesome wget vim
-  # 安装软件
-  sudo apt-get install -y git git-flow gnupg htop bash-completion screen zsh curl wget
+  sudo apt-get install -y git git-flow shellcheck gnupg tree htop bash-completion screen zsh curl wget vim
+  # 安装 Docker
+  sudo apt-get remove docker docker-engine docker.io containerd runc
+  sudo apt-get purge docker-ce
+  sudo rm -rf /var/lib/docker
   # 安装 docker
   curl -fsSL https://get.docker.com | sh
   sudo usermod -aG docker $USER
@@ -204,7 +218,7 @@ if [ "$(uname -s)" != "Darwin" ];then
     if [[ $? == 0 ]]; then
       sudo chsh -s ${target} $(whoami)
     fi
-  logs "Shell 已修改为 ${change}..."
+  logs "Shell 已修改为 ${change}...需要退出后重新登录"
   fi
 else
   echo $(which zsh) >> /etc/shells
@@ -242,17 +256,12 @@ if command -v emacs @>/dev/null && [ ! -d "$HOME/.emacs.d" ]; then
 fi
 
 # 系统配置
-read -r -p "基础设置？[y|N]" ans
-if [[ $ans =~ (yes|y|Y) ]];then
-  # 检查所有完成之后，直接查设置。不再添加其他配置
-  if [ "$(uname -s)" != "Darwin" ];then
-    source $CONFIG_HOME/setup/linux.sh
-  else
+if [ "$(uname -s)" == "Darwin" ];then
+  read -r -p "基础设置？[y|N]" ans
+  if [[ $ans =~ (yes|y|Y) ]];then
+    # 检查所有完成之后，直接查设置。不再添加其他配置
     source $CONFIG_HOME/setup/osx.sh
   fi
-fi
-
-if [ "$(uname -s)" == "Darwin" ];then
   # 默认情况下，Terminal中使用 soldark 主题
   read -r -p "配置 terminal？[y|N] " ans
   if [[ $ans =~ (yes|y|Y) ]];then
