@@ -1,5 +1,7 @@
 # Path to your oh-my-zsh installation.
 
+
+
 export ZSH=${CONFIG_HOME}/zsh/oh-my-zsh
 export dirstack_file=${CACHE_HOME}/zsh/.zdirs
 
@@ -7,10 +9,10 @@ update-zsh-config() {
 	upgrade_oh_my_zsh
 }
 export UPDATE_ZSH_DAYS=14
-#  zsh-autosuggestions zsh-syntax-highlighting
-plugins=(colorize compleat dirpersist autojump git gulp history cp zsh-completions)
-plugins+=(docker docker-compose colored-man-page marked2)
-[[ "$(uname)" == "Darwin" ]] && plugins+=(osx)
+#
+plugins=(colorize compleat dirpersist autojump git gulp history cp)
+plugins+=(docker docker-compose marked2)
+[[ "$(uname)" == "Darwin" ]] && plugins+=(osx colored-man-page zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
 export DEFAULT_USER="$USER"
 ZSH_CUSTOM=$ZSH/custom
 DISABLE_UPDATE_PROMPT=true
@@ -129,8 +131,8 @@ POWERLEVEL9K_CUSTOM_BATTERY_STATUS="prompt_zsh_battery_level"
 [[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[[ "$(uname)" == "Darwin" ]] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -138,11 +140,9 @@ export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # autoload -U compinit && compinit
 typeset -U PATH path
 
+
 # custom config
-source "${CONFIG_HOME}/zsh/aliases.zsh"
-source "${CONFIG_HOME}/zsh/keybindings.zsh"
-source "${CONFIG_HOME}/zsh/git.zsh"
-source "${CONFIG_HOME}/zsh/fzf.zsh"
+[[ "$(uname)" == "Darwin" ]] && source "${CONFIG_HOME}/zsh/aliases.zsh" && source "${CONFIG_HOME}/zsh/git.zsh" && source "${CONFIG_HOME}/zsh/fzf.zsh" && source "${CONFIG_HOME}/zsh/keybindings.zsh"
 # 以上的 linux 不可用
 source "${CONFIG_HOME}/zsh/functions.zsh"
 source "${CONFIG_HOME}/zsh/docker.zsh"

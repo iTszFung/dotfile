@@ -101,11 +101,14 @@ if [ "$(uname -s)" != "Darwin" ];then
   #     linux_install "$develop_package $extra_package"
   #   fi
   sudo apt-get update && sudo apt upgrade -y && sudo apt-get dist-upgrade -f
-  sudo apt-get install -y git git-flow shellcheck gnupg tree htop bash-completion screen zsh curl wget vim
+  sudo apt-get install -y git git-flow shellcheck gnupg tree htop bash-completion screen zsh curl wget vim autojump
   # 安装 Docker
-  sudo apt-get remove docker docker-engine docker.io containerd runc
-  sudo apt-get purge docker-ce
-  sudo rm -rf /var/lib/docker
+  read -r -p "卸载并删除Docker旧数据 [y|N] " ans
+  if [[ $ans =~ (yes|y|Y) ]];then
+    sudo apt-get remove docker docker-engine docker.io containerd runc
+    sudo apt-get purge docker-ce
+    sudo rm -rf /var/lib/docker
+  fi
   # 安装 docker
   curl -fsSL https://get.docker.com | sh
   sudo usermod -aG docker $USER
@@ -201,7 +204,8 @@ if [ ! -d "${omzsh}" ];then
     sync_repo ${omzsh} ${OMZSH_REPO_URL}
     sync_repo ${omzsh}/custom/themes/powerlevel9k ${POWERLEVEL9K_REPO_URL}
     if [ ! -L "$HOME/.zshenv" ];then
-      echo "export DOTFILE_HOME=$SCRIPT_HOME" > ${CONFIG_HOME}/zsh/.zshenv
+      # echo "export DOTFILE_HOME=$SCRIPT_HOME" > ${CONFIG_HOME}/zsh/.zshenv
+      sed -i '1i\export DOTFILE_HOME='$SCRIPT_HOME'' ${CONFIG_HOME}/zsh/.zshenv
       lnif ${CONFIG_HOME}/zsh/.zshenv $HOME/.zshenv
     fi
   fi
