@@ -28,7 +28,7 @@
     "cnpm": "^6.0.0",
     "vue": "^2.6.8",
     "vue-cli": "^2.9.6",
-    "electron": "^4.0.8",
+    "electron": "^9.1.0",
     "vue-electron": "^1.0.6"
   }
 }
